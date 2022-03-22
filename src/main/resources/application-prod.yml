@@ -1,0 +1,41 @@
+## 数据源配置
+spring:
+  datasource: # A Datasource is a factory for connections to the physical databases
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.213.180:3306/crm?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+
+  ## freemarker
+  freemarker:
+    suffix: .ftl
+    content-type: text/html
+    charset: UTF-8
+    template-loader-path: classpath:/views/
+    request-context-attribute: ctx
+
+  ## 启用热部署
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
+## mybatis 配置
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml
+  type-aliases-package: com.frank.crm.vo;com.frank.crm.query;com.frank.crm.dto
+  configuration:
+    map-underscore-to-camel-case: true
+
+## pageHelper 分页
+pagehelper:
+  helper-dialect: mysql
+
+## 设置 dao 日志打印级别
+logging:
+  level:
+    com:
+      frank:
+        crm:
+          dao: debug
